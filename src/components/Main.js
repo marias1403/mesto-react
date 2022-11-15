@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from './Card';
-import PopupWithForm from "./PopupWithForm";
-import api from "../utils/api";
+import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
+import api from '../utils/api';
 
 function Main(props) {
   const [userName, setUserName] = React.useState('');
@@ -24,13 +25,14 @@ function Main(props) {
   React.useEffect(() => {
     api.getInitialsCards()
       .then(data => {
-        setCards(data.results.map((cardData) => ({
-          _id: cardData._id,
+        setCards(data.map((cardData) => ({
+          idCard: cardData._id,
           image: cardData.link,
           title: cardData.name,
           likes: cardData.likes,
           owner: cardData.owner._id,
         })))
+        console.log(setCards);
     })
       .catch((err) => {
         console.log(err);
@@ -54,7 +56,7 @@ function Main(props) {
 
       <section className="section content__section">
         <ul className="elements page__elements">
-          {cards.map(({ _id, ...card }) => <Card key={_id} {...card} />)}
+          {cards.map((card) => <Card key={card.idCard} card={card} onCardClick={props.onCardClick} />)}
         </ul>
       </section>
 
@@ -91,6 +93,11 @@ function Main(props) {
         <input id="avatar" type="url" name="avatar" className="popup__input popup__input_type_avatar" placeholder="Ссылка на фото профиля" required aria-label="Ссылка" />
         <span id="avatar-error" className="popup__error" />
       </PopupWithForm>
+
+      <ImagePopup
+        card={props.selectedCard}
+        onClose={props.onClose}
+      />
     </main>
 );
 }
