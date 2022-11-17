@@ -1,7 +1,5 @@
 import React from 'react';
 import Card from './Card';
-import PopupWithForm from './PopupWithForm';
-import ImagePopup from './ImagePopup';
 import api from '../utils/api';
 
 function Main(props) {
@@ -32,7 +30,6 @@ function Main(props) {
           likes: cardData.likes,
           owner: cardData.owner._id,
         })))
-        console.log(setCards);
     })
       .catch((err) => {
         console.log(err);
@@ -59,45 +56,6 @@ function Main(props) {
           {cards.map((card) => <Card key={card.idCard} card={card} onCardClick={props.onCardClick} />)}
         </ul>
       </section>
-
-      <PopupWithForm
-        isOpen={props.isEditProfilePopupOpen}
-        name={'profile'}
-        title={'Редактировать профиль'}
-        onClose={props.onClose}
-      >
-        <input id="name" type="text" name="name" minLength="2" maxLength="40" className="popup__input popup__input_type_name" placeholder="Ваше имя" required aria-label="Имя"/>
-        <span id="name-error" className="popup__error" />
-        <input id="status" type="text" name="status" minLength="2" maxLength="200" className="popup__input popup__input_type_status" placeholder="Ваша должность" required aria-label="Статус"/>
-        <span id="status-error" className="popup__error"/>
-      </PopupWithForm>
-
-      <PopupWithForm
-        isOpen={props.isAddPlacePopupOpen}
-        name={'add-card'}
-        title={'Новое место'}
-        onClose={props.onClose}
-      >
-        <input id="title" type="text" name="title" minLength="2" maxLength="30" className="popup__input popup__input_type_image-title" placeholder="Название" required aria-label="Название" />
-        <span id="title-error" className="popup__error" />
-        <input id="link" type="url" name="link" className="popup__input popup__input_type_image-link" placeholder="Ссылка на картинку" required aria-label="Ссылка" />
-        <span id="link-error" className="popup__error" />
-      </PopupWithForm>
-
-      <PopupWithForm
-        isOpen={props.isEditAvatarPopupOpen}
-        name={'avatar'}
-        title={'Обновить аватар'}
-        onClose={props.onClose}
-      >
-        <input id="avatar" type="url" name="avatar" className="popup__input popup__input_type_avatar" placeholder="Ссылка на фото профиля" required aria-label="Ссылка" />
-        <span id="avatar-error" className="popup__error" />
-      </PopupWithForm>
-
-      <ImagePopup
-        card={props.selectedCard}
-        onClose={props.onClose}
-      />
     </main>
 );
 }
