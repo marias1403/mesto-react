@@ -18,7 +18,7 @@ function Main(props) {
       .catch((err) => {
       console.log(err);
     })
-  })
+  }, [])
 
   React.useEffect(() => {
     api.getInitialsCards()
@@ -34,7 +34,7 @@ function Main(props) {
       .catch((err) => {
         console.log(err);
       })
-  })
+  }, [])
 
   return (
     <main className="content page__content">
