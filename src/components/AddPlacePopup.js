@@ -34,6 +34,7 @@ function AddPlacePopup(props) {
       title={'Новое место'}
       onClose={props.onClose}
       onSubmit={handleSubmit}
+      buttonText={'Создать'}
     >
       <input
         id="title"
