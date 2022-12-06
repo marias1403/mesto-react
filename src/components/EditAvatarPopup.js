@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect } from 'react';
+import React, { useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function EditAvatarPopup(props) {

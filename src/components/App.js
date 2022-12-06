@@ -1,5 +1,4 @@
-import React from 'react';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -42,7 +41,10 @@ function App() {
     const isOwn = card.owner === currentUser._id;
     api.deleteCard(card.idCard, isOwn).then(() => {
       setCards((state) => state.filter((c) => c.idCard !== card.idCard));
-    });
+    })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   function mapCardDataToState(card) {

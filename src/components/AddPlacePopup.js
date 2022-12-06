@@ -17,7 +17,7 @@ function AddPlacePopup(props) {
   React.useEffect(() => {
     setTitle('');
     setImage('');
-  }, []);
+  }, [props.isOpen]);
 
   function handleSubmit(e) {
     e.preventDefault();
